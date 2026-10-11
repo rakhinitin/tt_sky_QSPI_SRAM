@@ -46,10 +46,6 @@ module tt_um_example (
     wire [31:0] wr_wordline = (cs && wen) ? (32'b1 << wr_addr) : 32'b0;
     wire        addr_ready_flag = |wr_wordline;
 
-    // Combinational full byte assembly and parallel XOR cipher
-    wire [7:0] assembled_write_byte = {msb_buf, io_in};
-    wire [7:0] encrypted_write_byte = assembled_write_byte ^ CIPHER_KEY;
-
     // ----------------------------------------------------------------
     // 4. Read Datapath: 5:32 Decoder & 256-to-8 Bitline Gating Matrix
     // ----------------------------------------------------------------
@@ -68,7 +64,7 @@ module tt_um_example (
     end
 
     // ----------------------------------------------------------------
-    // 5. Synchronous Sequential Execution (Non-Blocking '<=' throughout)
+    // 5. Synchronous Sequential Execution
     // ----------------------------------------------------------------
     integer w_idx;
     always @(posedge clk or posedge rst) begin
@@ -90,12 +86,12 @@ module tt_um_example (
                     msb_buf      <= io_in;
                     nibble_phase <= 1'b1;
                 end else begin
-                    // Clock 2: Commit encrypted byte directly to selected 8-bit slice
+                    // Clock 2: Commit assembled byte {msb_buf, io_in} ^ 0xAA
                     nibble_phase <= 1'b0;
                     if (addr_ready_flag) begin
                         for (w_idx = 0; w_idx < 32; w_idx = w_idx + 1) begin
                             if (wr_wordline[w_idx]) begin
-                                mem_cells[w_idx*8 +: 8] <= encrypted_write_byte;
+                                mem_cells[w_idx*8 +: 8] <= {msb_buf, io_in} ^ CIPHER_KEY;
                             end
                         end
                     end
