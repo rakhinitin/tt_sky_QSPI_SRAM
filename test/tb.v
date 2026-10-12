@@ -6,7 +6,7 @@
 */
 module tb ();
 
-  // Dump the signals to an FST file. You can view it with gtkwave or surfer.
+  // Dump the signals to a FST file. You can view it with gtkwave or surfer.
   initial begin
     $dumpfile("tb.fst");
     $dumpvars(0, tb);
@@ -27,7 +27,7 @@ module tb ();
   wire VGND = 1'b0;
 `endif
 
-  // Instance of the Secure QSPI SRAM module
+  // Replace tt_um_example with your module name:
   tt_um_example user_project (
 
       // Include power ports for the Gate Level test:
