@@ -3,6 +3,19 @@
 ## Secure QSPI SRAM: Hardware-Encrypted Memory 
 A parameter-conscious, secure digital SRAM IP implemented in Verilog for Tiny Tapeout using the SkyWater SKY130 ASIC design flow. The core integrates an on-chip symmetric 8-bit parallel XOR cipher pipeline, dual 5:32 address decoders, and a direct 128-pin joint connection matrix that eliminates multiplexer trees to achieve single-cycle reads, two-cycle writes, and simultaneous dual-port memory access within a single 1x1 tile.
 
+## Highlights
+* Parameter-conscious Verilog RTL implementation targeting a Tiny Tapeout 1x1 tile footprint
+* Standard Tiny Tapeout pad interface using clk, rst_n, ena, ui_in, uo_out, uio_in, uio_out, and uio_oe
+* Physical 128-bit memory core organized as 16 addressable bytes by 8 bits
+* Symmetric on-chip 8-bit parallel XOR encryption and decryption engine using fixed secret key 0xAA (8'b1010_1010)
+* Pure decoder-driven memory gating via dual 5:32 write and read decoders without multiplexer trees
+* Direct 128-pin joint connection matrix bridging decoders directly to flip-flop storage cells
+* Deterministic timing: two-cycle sequential write operations and single-cycle parallel read operations
+* Non-interfering simultaneous access supporting concurrent write and read operations
+* Hardware address qualification and out-of-bounds protection with architectural pin reservation for 32-byte expansion
+* Cocotb testbench and Gate-Level (gl_test) simulation verification
+* Automated GDSII physical implementation flow via Tiny Tapeout GitHub Actions
+
 ## Architecture:
 <img width="1622" height="647" alt="Screenshot 2026-10-13 at 2 19 59 PM" src="https://github.com/user-attachments/assets/0f5bb836-5aca-4b18-ad19-cebb52a1c873" />
 
@@ -58,18 +71,6 @@ The top level module is tt_um_example
 | `uio_out[7:0]` | Output (Tied) | `uio_out` | Internally tied to `8'h00` |
 | `uio_oe[7:0]` | Control (Tied) | `uio_oe` | Internally tied to `8'h00` (configures bidirectional pads as inputs) |
 
-## Highlights
-* Parameter-conscious Verilog RTL implementation targeting a Tiny Tapeout 1x1 tile footprint
-* Standard Tiny Tapeout pad interface using clk, rst_n, ena, ui_in, uo_out, uio_in, uio_out, and uio_oe
-* Physical 128-bit memory core organized as 16 addressable bytes by 8 bits
-* Symmetric on-chip 8-bit parallel XOR encryption and decryption engine using fixed secret key 0xAA (8'b1010_1010)
-* Pure decoder-driven memory gating via dual 5:32 write and read decoders without multiplexer trees
-* Direct 128-pin joint connection matrix bridging decoders directly to flip-flop storage cells
-* Deterministic timing: two-cycle sequential write operations and single-cycle parallel read operations
-* Non-interfering simultaneous access supporting concurrent write and read operations
-* Hardware address qualification and out-of-bounds protection with architectural pin reservation for 32-byte expansion
-* Cocotb testbench and Gate-Level (gl_test) simulation verification
-* Automated GDSII physical implementation flow via Tiny Tapeout GitHub Actions
 
 
 ## Repository structure:
