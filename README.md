@@ -103,7 +103,7 @@ The automated GDS workflow reported the following routing statistics:
 
 | Metric | Recorded Result |
 | :--- | :--- |
-| Routing Utilisation | 45.347 % |
+| Core Utilisation | 45.347 % |
 | Wire Length | 19,562 µm |
 | GDS Generation | Successful |
 
