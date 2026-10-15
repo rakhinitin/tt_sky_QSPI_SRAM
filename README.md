@@ -126,7 +126,7 @@ tt_sky_QSPI_SRAM/
 ## Team Members
 * Sahil Sexsena $\rightarrow$ [GitHub](https://github.com/sahilatr)
 * Varalakshmi S Kulal $\rightarrow$ 
-* Shobhit Jaiswal $\rightarrow$ [GitHub]((https://github.com/shobhitjaiswal7777)
+* Shobhit Jaiswal $\rightarrow$ [GitHub](https://github.com/shobhitjaiswal7777)
 * Soumayarani $\rightarrow$
-  https://github.com/shobhitjaiswal7777
+ 
 
