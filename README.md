@@ -10,6 +10,7 @@
 
 ## flowchart:
 <img width="767" height="789" alt="Screenshot 2026-10-13 at 2 23 13 PM" src="https://github.com/user-attachments/assets/176a650a-983b-464f-9fa6-8435b29d0f4c" />
+
 ## Repository structure:
 
 power_governer_tiny_tapeout/
