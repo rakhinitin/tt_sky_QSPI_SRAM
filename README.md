@@ -124,7 +124,7 @@ tt_sky_QSPI_SRAM/
 └── README.md            # Technical architecture manual and test guide
 ```
 ## Team Members
-* Sahil Sexsena $\rightarrow$ https://github.com/sahilatr
+* Sahil Sexsena $\rightarrow$ [GitHub](https://github.com/sahilatr)
 * Varalakshmi S Kulal $\rightarrow$ 
 * Shobhit Jaiswal $\rightarrow$ 
 * Soumayarani $\rightarrow$ 
