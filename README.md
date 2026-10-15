@@ -4,9 +4,9 @@
 A parameter-conscious, secure digital SRAM IP implemented in Verilog for Tiny Tapeout using the SkyWater SKY130 ASIC design flow. The core integrates an on-chip symmetric 8-bit parallel XOR cipher pipeline, dual 5:32 address decoders, and a direct 128-pin joint connection matrix that eliminates multiplexer trees to achieve single-cycle reads, two-cycle writes, and simultaneous dual-port memory access within a single 1x1 tile.
 
 ## Highlights
-Parameter-conscious Verilog RTL implementation targeting a Tiny Tapeout 1x1 tile footprint
-Standard Tiny Tapeout pad interface using clk, rst_n, ena, ui_in, uo_out, uio_in, uio_out, and uio_oe
-Physical 128-bit memory core organized as 16 addressable bytes by 8 bits
+* Parameter-conscious Verilog RTL implementation targeting a Tiny Tapeout 1x1 tile footprint
+* Standard Tiny Tapeout pad interface using clk, rst_n, ena, ui_in, uo_out, uio_in, uio_out, and uio_oe
+* Physical 128-bit memory core organized as 16 addressable bytes by 8 bits
 Symmetric on-chip 8-bit parallel XOR encryption and decryption engine using fixed secret key 0xAA (8'b1010_1010)
 Pure decoder-driven memory gating via dual 5:32 write and read decoders without multiplexer trees
 
