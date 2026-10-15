@@ -22,6 +22,17 @@ A parameter-conscious, secure digital SRAM IP implemented in Verilog for Tiny Ta
 ## Functional Flow:
 <img width="767" height="789" alt="Screenshot 2026-10-13 at 2 23 13 PM" src="https://github.com/user-attachments/assets/176a650a-983b-464f-9fa6-8435b29d0f4c" />
 
+## Operating Modes
+
+| Mode Name | Trigger Condition | Hardware State | Description |
+| :--- | :--- | :--- | :--- |
+| `Reset / Clear` | `!rst_n` | State Reset | Initialize |
+| `Standby` | `!cs` or (`!wen` and `!ren`) | `s_standby` | Retention |
+| `Write Ingestion` | `cs && wen && !nibble_phase` | `WRITE_MSB` | Buffering |
+| `Write Commit` | `addr_ready_flag && nibble_phase` | `WRITE_COMMIT` | Encryption |
+| `Parallel Read` | `cs && ren` | `PARALLEL READ` | Decryption |
+| `Simultaneous Access` | `cs && wen && ren` | Dual-Port Active | Concurrent |
+
 ## Tiny Tapeout Interface
 The top level module is tt_um_example
 ## Pinout Configuration
@@ -89,16 +100,6 @@ tt_sky_QSPI_SRAM/
 ├── info.yaml            # Tiny Tapeout project metadata and pin descriptions
 └── README.md            # Technical architecture manual and test guide
 ```
-## Operating Modes
-
-| Mode Name | Trigger Condition | Hardware State | Description |
-| :--- | :--- | :--- | :--- |
-| `Reset / Clear` | `!rst_n` | State Reset | Initialize |
-| `Standby` | `!cs` or (`!wen` and `!ren`) | `s_standby` | Retention |
-| `Write Ingestion` | `cs && wen && !nibble_phase` | `WRITE_MSB` | Buffering |
-| `Write Commit` | `addr_ready_flag && nibble_phase` | `WRITE_COMMIT` | Encryption |
-| `Parallel Read` | `cs && ren` | `PARALLEL READ` | Decryption |
-| `Simultaneous Access` | `cs && wen && ren` | Dual-Port Active | Concurrent |
 
 ## Documentation
 documentation: 
