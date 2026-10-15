@@ -7,20 +7,14 @@ A parameter-conscious, secure digital SRAM IP implemented in Verilog for Tiny Ta
 * Parameter-conscious Verilog RTL implementation targeting a Tiny Tapeout 1x1 tile footprint
 * Standard Tiny Tapeout pad interface using clk, rst_n, ena, ui_in, uo_out, uio_in, uio_out, and uio_oe
 * Physical 128-bit memory core organized as 16 addressable bytes by 8 bits
-Symmetric on-chip 8-bit parallel XOR encryption and decryption engine using fixed secret key 0xAA (8'b1010_1010)
-Pure decoder-driven memory gating via dual 5:32 write and read decoders without multiplexer trees
-
-Direct 128-pin joint connection matrix bridging decoders directly to flip-flop storage cells
-
-Deterministic timing: two-cycle sequential write operations and single-cycle parallel read operations
-
-Non-interfering simultaneous access supporting concurrent write and read operations
-
-Hardware address qualification and out-of-bounds protection with architectural pin reservation for 32-byte expansion
-
-Cocotb testbench and Gate-Level (gl_test) simulation verification
-
-Automated GDSII physical implementation flow via Tiny Tapeout GitHub Actions
+* Symmetric on-chip 8-bit parallel XOR encryption and decryption engine using fixed secret key 0xAA (8'b1010_1010)
+* Pure decoder-driven memory gating via dual 5:32 write and read decoders without multiplexer trees
+* Direct 128-pin joint connection matrix bridging decoders directly to flip-flop storage cells
+* Deterministic timing: two-cycle sequential write operations and single-cycle parallel read operations
+* Non-interfering simultaneous access supporting concurrent write and read operations
+* Hardware address qualification and out-of-bounds protection with architectural pin reservation for 32-byte expansion
+* Cocotb testbench and Gate-Level (gl_test) simulation verification
+* Automated GDSII physical implementation flow via Tiny Tapeout GitHub Actions
 
 
 ## architecture:
