@@ -82,7 +82,30 @@ The top level module is tt_um_example
 | `uio_out[7:0]` | Output (Tied) | `uio_out` | Internally tied to `8'h00` |
 | `uio_oe[7:0]` | Control (Tied) | `uio_oe` | Internally tied to `8'h00` (configures bidirectional pads as inputs) |
 
+## Verification
+The design completed the full automated Tiny Tapeout verification suite, passing all functional simulations and post-synthesis checks.
 
+The successful GitHub Actions workflow reports the following job results:
+
+| Check | Result |
+| :--- | :--- |
+| GDS generation | Passed |
+| Tiny Tapeout precheck | Passed |
+| Gate-level test (`gl_test`) | Passed |
+| Viewer deployment | Passed |
+
+---
+
+## Physical Design
+Physical implementation was completed using the SkyWater SKY130 (130nm) open-source ASIC flow targeted for a standard Tiny Tapeout 1x1 tile. The pure decoder-driven architecture and 128-pin joint matrix maintain balanced cell density and routability across standard metal layers without routing congestion.
+
+The automated GDS workflow reported the following routing statistics:
+
+| Metric | Recorded Result |
+| :--- | :--- |
+| Routing Utilisation | 45.347 % |
+| Wire Length | 19,562 µm |
+| GDS Generation | Successful |
 
 ## Repository structure:
 
