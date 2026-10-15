@@ -13,6 +13,7 @@
 
 ## Repository structure:
 
+```text
 tt_sky_QSPI_SRAM/
 ├── .github/workflows/   # Automated CI/CD simulation and GDS workflows
 ├── docs/
@@ -25,3 +26,4 @@ tt_sky_QSPI_SRAM/
 │   └── test.py          # Synchronous Cocotb verification test suite
 ├── info.yaml            # Tiny Tapeout project metadata and pin descriptions
 └── README.md            # Technical architecture manual and test guide
+```
