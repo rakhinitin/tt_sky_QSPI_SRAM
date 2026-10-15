@@ -93,12 +93,12 @@ tt_sky_QSPI_SRAM/
 
 | Mode Name | Trigger Condition | Hardware State | Description |
 | :--- | :--- | :--- | :--- |
-| `Reset / Clear` | `!rst_n` | State Reset | Clears all internal pipeline registers, resets `nibble_phase` to 0, flushes `msb_buf`, and forces `uo_out` and internal storage cells to `8'h00`. |
-| `Standby` | `!cs` or (`!wen` and `!ren`) | `s_standby` | Data retention mode where the memory core preserves stored ciphertext indefinitely without requiring clock toggles or refresh cycles. Output pins safely hold `8'h00`. |
-| `Write Ingestion` | `cs && wen && !nibble_phase` | `WRITE_MSB` | Clock 1 phase that captures the incoming 4-bit MSB nibble from `ui_in[3:0]` into the internal register `msb_buf` and flags `nibble_phase <= 1`. |
-| `Write Commit` | `addr_ready_flag && nibble_phase` | `WRITE_COMMIT` | Clock 2 phase that joins `msb_buf` with the incoming 4-bit LSB nibble, executes parallel XOR encryption via key `0xAA`, and commits ciphertext into the target byte through the 128-pin matrix. |
-| `Parallel Read` | `cs && ren` | `PARALLEL READ` | Direct 1-clock execution where the 5:32 read decoder asserts bitlines across the 128-pin matrix, decrypts the retrieved ciphertext with key `0xAA`, and presents plaintext on `uo_out[7:0]`. |
-| `Simultaneous Access` | `cs && wen && ren` | Dual-Port Active | Concurrent write and read execution across independent memory rows in the same cycle without data hazards, pipeline stalls, or bus contention. |
+| `Reset / Clear` | `!rst_n` | State Reset | Initialize |
+| `Standby` | `!cs` or (`!wen` and `!ren`) | `s_standby` | Retention |
+| `Write Ingestion` | `cs && wen && !nibble_phase` | `WRITE_MSB` | Buffering |
+| `Write Commit` | `addr_ready_flag && nibble_phase` | `WRITE_COMMIT` | Encryption |
+| `Parallel Read` | `cs && ren` | `PARALLEL READ` | Decryption |
+| `Simultaneous Access` | `cs && wen && ren` | Dual-Port Active | Concurrent |
 
 ## Documentation
 documentation: 
