@@ -129,4 +129,10 @@ tt_sky_QSPI_SRAM/
 * Shobhit Jaiswal $\rightarrow$ [GitHub](https://github.com/shobhitjaiswal7777)
 * Soumayarani $\rightarrow$
  
+## Acknowledgements
 
+Built using the Tiny Tapeout Verilog project template, the SkyWater SKY130 process design kit, Cocotb, and the automated Tiny Tapeout physical-design workflow.
+
+* Tiny Tapeout: https://tinytapeout.com/
+* Author: [Sahil](https://github.com/sahilatr)
+* Repository: https://github.com/sahilatr/tt_sky_QSPI_SRAM
