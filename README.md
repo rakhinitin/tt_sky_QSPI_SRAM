@@ -89,6 +89,47 @@ tt_sky_QSPI_SRAM/
 ├── info.yaml            # Tiny Tapeout project metadata and pin descriptions
 └── README.md            # Technical architecture manual and test guide
 ```
+┌────────────────────────────────────────────────────────────────────────┐
+│ MODE: Reset / Clear                                                   │
+│ Condition: !rst_n                                                      │
+│ Flushes internal pipeline registers, resets the nibble phase tracker,  │
+│ and zeroes all memory cells and output ports.                         │
+└────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────┐
+│ MODE: Standby (s_standby)                                             │
+│ Condition: !cs || (!wen && !ren)                                       │
+│ The memory core retains all stored encrypted data indefinitely        │
+│ independent of clock cycles, while output pins safely drop to 0x00.   │
+└────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────┐
+│ MODE: Write Ingestion (WRITE_MSB)                                      │
+│ Condition: cs && wen && !nibble_phase                                  │
+│ Latches the upper 4-bit MSB data nibble from ui_in[3:0] into msb_buf   │
+│ during Clock 1 and asserts the phase flag to await the lower nibble.  │
+└────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────┐
+│ MODE: Write Commit (WRITE_COMMIT)                                      │
+│ Condition: addr_ready_flag && nibble_phase                             │
+│ Concatenates the LSB nibble with msb_buf, encrypts the byte with key   │
+│ 0xAA, and drives the 128-pin matrix to commit ciphertext to SRAM.      │
+└────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────┐
+│ MODE: Parallel Read (PARALLEL READ)                                   │
+│ Condition: cs && ren                                                   │
+│ Decodes the read address, gates the target byte onto read bitlines,    │
+│ decrypts via key 0xAA, and outputs plaintext in a single clock cycle.  │
+└────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────┐
+│ MODE: Simultaneous Access                                              │
+│ Condition: cs && wen && ren                                            │
+│ Performs concurrent write and read operations across independent       │
+│ addresses in the same clock edge without pipeline stalls or hazards.  │
+└────────────────────────────────────────────────────────────────────────┘
 ## Documentation
 documentation: 
   author:       "Sahil Sexsena"
