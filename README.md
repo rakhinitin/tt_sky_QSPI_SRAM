@@ -34,41 +34,38 @@ documentation:
   language:     "Verilog"
   description:  "128-bit QSPI SRAM with on-chip 8-bit XOR cipher, dual 5:32 decoders, and a 128-pin joint matrix"
 
-## Pinout mapping for Tiny Tapeout datasheet and viewer
-pinout:
-  ## Dedicated Inputs (ui_in)
-  ui[0]: "data_in[0] (nibble LSB)"
-  ui[1]: "data_in[1]"
-  ui[2]: "data_in[2]"
-  ui[3]: "data_in[3] (nibble MSB)"
-  ui[4]: "dec_wr_addr[0] (A0 - LSB)"
-  ui[5]: "dec_wr_addr[1] (A1)"
-  ui[6]: "dec_wr_addr[2] (A2)"
-  ui[7]: "dec_wr_addr[3] (A3)"
+## Pinout Configuration
 
-  ## Dedicated Outputs (uo_out)
-  uo[0]: data_out[0]
-  
-  uo[1]: data_out[1]
-  
-  uo[2]: data_out[2]
-  
-  uo[3]: data_out[3]
-  
-  uo[4]: data_out[4]
-  
-  uo[5]: data_out[5]
-  
-  uo[6]: data_out[6]
-  
-  uo[7]: data_out[7]
+## Complete Pinout Mapping
 
-  ## Bidirectional IOs configured as inputs (uio_in)
-  uio[0]: "dec_wr_addr[4] (A4 - MSB)"
-  uio[1]: "wen (Write Enable, active-high)"
-  uio[2]: "ren (Read Enable, active-high)"
-  uio[3]: "dec_rd_addr[0] (A0 - LSB)"
-  uio[4]: "dec_rd_addr[1] (A1)"
-  uio[5]: "dec_rd_addr[2] (A2)"
-  uio[6]: "dec_rd_addr[3] (A3)"
-  uio[7]: "dec_rd_addr[4] (A4 - MSB)"
+| Pin Name | Pin Type | Internal Signal Name | Description |
+| :--- | :--- | :--- | :--- |
+| `clk` | Global Input | `clk` | System clock input |
+| `rst_n` | Global Input | `rst_n` | Active-low asynchronous reset |
+| `ena` | Global Input | `ena` / `cs` | Active-high chip select / enable |
+| `ui_in[0]` | Dedicated Input | `data_in[0]` | Data input bit 0 (nibble LSB) |
+| `ui_in[1]` | Dedicated Input | `data_in[1]` | Data input bit 1 |
+| `ui_in[2]` | Dedicated Input | `data_in[2]` | Data input bit 2 |
+| `ui_in[3]` | Dedicated Input | `data_in[3]` | Data input bit 3 (nibble MSB) |
+| `ui_in[4]` | Dedicated Input | `dec_wr_addr[0]` | Write address bit 0 (A0 - LSB) |
+| `ui_in[5]` | Dedicated Input | `dec_wr_addr[1]` | Write address bit 1 (A1) |
+| `ui_in[6]` | Dedicated Input | `dec_wr_addr[2]` | Write address bit 2 (A2) |
+| `ui_in[7]` | Dedicated Input | `dec_wr_addr[3]` | Write address bit 3 (A3) |
+| `uo_out[0]` | Dedicated Output | `data_out[0]` | Decrypted parallel data output bit 0 |
+| `uo_out[1]` | Dedicated Output | `data_out[1]` | Decrypted parallel data output bit 1 |
+| `uo_out[2]` | Dedicated Output | `data_out[2]` | Decrypted parallel data output bit 2 |
+| `uo_out[3]` | Dedicated Output | `data_out[3]` | Decrypted parallel data output bit 3 |
+| `uo_out[4]` | Dedicated Output | `data_out[4]` | Decrypted parallel data output bit 4 |
+| `uo_out[5]` | Dedicated Output | `data_out[5]` | Decrypted parallel data output bit 5 |
+| `uo_out[6]` | Dedicated Output | `data_out[6]` | Decrypted parallel data output bit 6 |
+| `uo_out[7]` | Dedicated Output | `data_out[7]` | Decrypted parallel data output bit 7 |
+| `uio_in[0]` | Bidirectional Input | `dec_wr_addr[4]` | Write address bit 4 (A4 - MSB / boundary check) |
+| `uio_in[1]` | Bidirectional Input | `wen` | Write enable strobe (active-high) |
+| `uio_in[2]` | Bidirectional Input | `ren` | Read enable strobe (active-high) |
+| `uio_in[3]` | Bidirectional Input | `dec_rd_addr[0]` | Read address bit 0 (A0 - LSB) |
+| `uio_in[4]` | Bidirectional Input | `dec_rd_addr[1]` | Read address bit 1 (A1) |
+| `uio_in[5]` | Bidirectional Input | `dec_rd_addr[2]` | Read address bit 2 (A2) |
+| `uio_in[6]` | Bidirectional Input | `dec_rd_addr[3]` | Read address bit 3 (A3) |
+| `uio_in[7]` | Bidirectional Input | `dec_rd_addr[4]` | Read address bit 4 (A4 - MSB / boundary check) |
+| `uio_out[7:0]`| Bidirectional Output | `uio_out` | Output data bus (internally tied to 8'h00) |
+| `uio_oe[7:0]` | Direction Control | `uio_oe` | Bidirectional enable bus (internally tied to 8'h00 to disable outputs) |)"
