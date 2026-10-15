@@ -123,12 +123,9 @@ tt_sky_QSPI_SRAM/
 ├── info.yaml            # Tiny Tapeout project metadata and pin descriptions
 └── README.md            # Technical architecture manual and test guide
 ```
-
-## Documentation
-documentation: 
-  author:       "Sahil Sexsena"
-  title:        "Secure QSPI SRAM Module"
-  language:     "Verilog"
-  description:  "128-bit QSPI SRAM with on-chip 8-bit XOR cipher, dual 5:32 decoders, and a 128-pin joint matrix"
-
+## Team Members
+* Sahil Sexsena --
+* Varalakshmi S Kulal --
+* Shobhit Jaiswal --
+* Soumayarani --
 
