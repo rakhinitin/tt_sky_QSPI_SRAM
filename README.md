@@ -13,16 +13,15 @@
 
 ## Repository structure:
 
-power_governer_tiny_tapeout/
-├── .github/workflows/   # Automated test and GDS workflows
+tt_sky_QSPI_SRAM/
+├── .github/workflows/   # Automated CI/CD simulation and GDS workflows
 ├── docs/
-│   └── info.md          # Tiny Tapeout project documentation
+│   └── info.md          # Tiny Tapeout project documentation and pinout
 ├── src/
-│   └── project.v        # Top wrapper and PwrGov-X RTL modules
+│   └── project.v        # Secure QSPI SRAM top-level RTL implementation
 ├── test/
-│   ├── Makefile         # Cocotb simulation configuration
-│   ├── tb.v             # Tiny Tapeout test harness
-│   └── test.py          # Cocotb integration test
-├── info.yaml            # Project metadata and pin descriptions
-└── README.md            # Project overview and technical documentation
-
+│   ├── Makefile         # Cocotb and Icarus Verilog simulation configuration
+│   ├── tb.v             # Clean Tiny Tapeout top-level test wrapper
+│   └── test.py          # Synchronous Cocotb verification test suite
+├── info.yaml            # Tiny Tapeout project metadata and pin descriptions
+└── README.md            # Technical architecture manual and test guide
