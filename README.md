@@ -27,16 +27,16 @@ tt_sky_QSPI_SRAM/
 ├── info.yaml            # Tiny Tapeout project metadata and pin descriptions
 └── README.md            # Technical architecture manual and test guide
 ```
-# Documentation
+## Documentation
 documentation: 
   author:       "Sahil Sexsena"
   title:        "Secure QSPI SRAM Module"
   language:     "Verilog"
   description:  "128-bit QSPI SRAM with on-chip 8-bit XOR cipher, dual 5:32 decoders, and a 128-pin joint matrix"
 
-# Pinout mapping for Tiny Tapeout datasheet and viewer
+## Pinout mapping for Tiny Tapeout datasheet and viewer
 pinout:
-  # Dedicated Inputs (ui_in)
+  ## Dedicated Inputs (ui_in)
   ui[0]: "data_in[0] (nibble LSB)"
   ui[1]: "data_in[1]"
   ui[2]: "data_in[2]"
@@ -46,17 +46,24 @@ pinout:
   ui[6]: "dec_wr_addr[2] (A2)"
   ui[7]: "dec_wr_addr[3] (A3)"
 
-  # Dedicated Outputs (uo_out)
-  uo[0]: "data_out[0]"
-  uo[1]: "data_out[1]"
-  uo[2]: "data_out[2]"
-  uo[3]: "data_out[3]"
-  uo[4]: "data_out[4]"
-  uo[5]: "data_out[5]"
-  uo[6]: "data_out[6]"
-  uo[7]: "data_out[7]"
+  ## Dedicated Outputs (uo_out)
+  uo[0]: data_out[0]
+  
+  uo[1]: data_out[1]
+  
+  uo[2]: data_out[2]
+  
+  uo[3]: data_out[3]
+  
+  uo[4]: data_out[4]
+  
+  uo[5]: data_out[5]
+  
+  uo[6]: data_out[6]
+  
+  uo[7]: data_out[7]
 
-  # Bidirectional IOs configured as inputs (uio_in)
+  ## Bidirectional IOs configured as inputs (uio_in)
   uio[0]: "dec_wr_addr[4] (A4 - MSB)"
   uio[1]: "wen (Write Enable, active-high)"
   uio[2]: "ren (Read Enable, active-high)"
