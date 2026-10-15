@@ -89,47 +89,17 @@ tt_sky_QSPI_SRAM/
 ├── info.yaml            # Tiny Tapeout project metadata and pin descriptions
 └── README.md            # Technical architecture manual and test guide
 ```
-┌────────────────────────────────────────────────────────────────────────┐
-│ MODE: Reset / Clear                                                   │
-│ Condition: !rst_n                                                      │
-│ Flushes internal pipeline registers, resets the nibble phase tracker,  │
-│ and zeroes all memory cells and output ports.                         │
-└────────────────────────────────────────────────────────────────────────┘
+## Operating Modes
 
-┌────────────────────────────────────────────────────────────────────────┐
-│ MODE: Standby (s_standby)                                             │
-│ Condition: !cs || (!wen && !ren)                                       │
-│ The memory core retains all stored encrypted data indefinitely        │
-│ independent of clock cycles, while output pins safely drop to 0x00.   │
-└────────────────────────────────────────────────────────────────────────┘
+| Mode Name | Trigger Condition | Hardware State | Description |
+| :--- | :--- | :--- | :--- |
+| `Reset / Clear` | `!rst_n` | State Reset | Clears all internal pipeline registers, resets `nibble_phase` to 0, flushes `msb_buf`, and forces `uo_out` and internal storage cells to `8'h00`. |
+| `Standby` | `!cs` or (`!wen` and `!ren`) | `s_standby` | Data retention mode where the memory core preserves stored ciphertext indefinitely without requiring clock toggles or refresh cycles. Output pins safely hold `8'h00`. |
+| `Write Ingestion` | `cs && wen && !nibble_phase` | `WRITE_MSB` | Clock 1 phase that captures the incoming 4-bit MSB nibble from `ui_in[3:0]` into the internal register `msb_buf` and flags `nibble_phase <= 1`. |
+| `Write Commit` | `addr_ready_flag && nibble_phase` | `WRITE_COMMIT` | Clock 2 phase that joins `msb_buf` with the incoming 4-bit LSB nibble, executes parallel XOR encryption via key `0xAA`, and commits ciphertext into the target byte through the 128-pin matrix. |
+| `Parallel Read` | `cs && ren` | `PARALLEL READ` | Direct 1-clock execution where the 5:32 read decoder asserts bitlines across the 128-pin matrix, decrypts the retrieved ciphertext with key `0xAA`, and presents plaintext on `uo_out[7:0]`. |
+| `Simultaneous Access` | `cs && wen && ren` | Dual-Port Active | Concurrent write and read execution across independent memory rows in the same cycle without data hazards, pipeline stalls, or bus contention. |
 
-┌────────────────────────────────────────────────────────────────────────┐
-│ MODE: Write Ingestion (WRITE_MSB)                                      │
-│ Condition: cs && wen && !nibble_phase                                  │
-│ Latches the upper 4-bit MSB data nibble from ui_in[3:0] into msb_buf   │
-│ during Clock 1 and asserts the phase flag to await the lower nibble.  │
-└────────────────────────────────────────────────────────────────────────┘
-
-┌────────────────────────────────────────────────────────────────────────┐
-│ MODE: Write Commit (WRITE_COMMIT)                                      │
-│ Condition: addr_ready_flag && nibble_phase                             │
-│ Concatenates the LSB nibble with msb_buf, encrypts the byte with key   │
-│ 0xAA, and drives the 128-pin matrix to commit ciphertext to SRAM.      │
-└────────────────────────────────────────────────────────────────────────┘
-
-┌────────────────────────────────────────────────────────────────────────┐
-│ MODE: Parallel Read (PARALLEL READ)                                   │
-│ Condition: cs && ren                                                   │
-│ Decodes the read address, gates the target byte onto read bitlines,    │
-│ decrypts via key 0xAA, and outputs plaintext in a single clock cycle.  │
-└────────────────────────────────────────────────────────────────────────┘
-
-┌────────────────────────────────────────────────────────────────────────┐
-│ MODE: Simultaneous Access                                              │
-│ Condition: cs && wen && ren                                            │
-│ Performs concurrent write and read operations across independent       │
-│ addresses in the same clock edge without pipeline stalls or hazards.  │
-└────────────────────────────────────────────────────────────────────────┘
 ## Documentation
 documentation: 
   author:       "Sahil Sexsena"
