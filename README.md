@@ -17,7 +17,7 @@ A parameter-conscious, secure digital SRAM IP implemented in Verilog for Tiny Ta
 * Automated GDSII physical implementation flow via Tiny Tapeout GitHub Actions
 
 ## Architecture:
-<img width="1622" height="647" alt="Screenshot 2026-10-13 at 2 19 59 PM" src="https://github.com/user-attachments/assets/0f5bb836-5aca-4b18-ad19-cebb52a1c873" />
+<img width="1646" height="657" alt="Screenshot 2026-10-23 at 12 18 24 PM" src="https://github.com/user-attachments/assets/746a10f8-791b-40ad-9efd-c1466134fa60" />
 
 ## Functional Flow:
 <img width="767" height="789" alt="Screenshot 2026-10-13 at 2 23 13 PM" src="https://github.com/user-attachments/assets/176a650a-983b-464f-9fa6-8435b29d0f4c" />
