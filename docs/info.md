@@ -36,7 +36,8 @@ You can also include images in this folder and reference them in the markdown. E
       uio_out[7:0], uio_oe[7:0]: Tied to 0x00 (bidirectional ports configured strictly as inputs).
 
 ### Architecture & Functional Specification:
-<img width="1622" height="647" alt="Screenshot 2026-10-13 at 2 19 59 PM" src="https://github.com/user-attachments/assets/9c7e6b54-5a18-489f-876f-b29dd55055e1" />
+<img width="1646" height="657" alt="Screenshot 2026-10-23 at 12 18 24 PM" src="https://github.com/user-attachments/assets/4d2b2783-4de3-48ef-a9c8-ffc42a039278" />
+
 
 Section 1: Control Pins, Ingestion & 8-Bit XOR Engine
 Input Signal Interfacing: Handles primary control inputs (clk, rst_n, ena/cs) and the 4-bit data bus (ui_in[3:0]/data_in[3:0]).
@@ -80,7 +81,7 @@ Synchronous & Reset Control: All sequential logic updates synchronously on the r
 
 ### Condition-Driven Finite State Machine(FSM):
 
-<img width="789" height="884" alt="Screenshot 2026-10-13 at 2 41 31 PM" src="https://github.com/user-attachments/assets/32da50fc-cc7c-42cc-a116-2c32d7571f76" />
+<img width="789" height="884" alt="Screenshot 2026-10-13 at 2 41 31 PM" src="https://github.com/user-attachments/assets/a9936c1e-6330-457c-a111-e9cb9e0f099d" />
 
 
 Transition 1: IDLE / RESET $\rightarrow$  WRITE_MSB
