@@ -34,7 +34,7 @@ A parameter-conscious, secure digital SRAM IP implemented in Verilog for Tiny Ta
 | `Simultaneous Access` | `cs && wen && ren` | Dual-Port Active | Concurrent |
 
 ## Tiny Tapeout Interface
-The top level module is tt_um_example
+The top level module is tt_um_sahilatr_qspi_sram
 ## Pinout Configuration
 
 ### Global Control Pins
