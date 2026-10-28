@@ -1,8 +1,8 @@
 # Tiny Tapeout project information
 project:
   title:        "QSPI_SRAM"      # Project title
-  author:       "SAHIL SEXSENA, VARALAKSHMI S KULAL, SHOBHIT JAISWAL, SOUMYARANI, DARSHAN AS"      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  author:       "SAHIL SEXSENA, VARALAKSHMI S KULAL, SHOBHIT JAISWAL, SOUMYARANI, DARSHAN AS(Guide/Mentor)"  # Your name
+  Academic:      "Atria Institute of Technology"      
   description:  "A secure 16-bytes QSPI SRAM implemented on SkyWater 130nm for Tiny Tapeout. It integrates an on-chip 8-bit parallel XOR cipher engine and dual 5:32 decoders, interfacing with a 128-pin joint matrix to execute concurrent, single-cycle read and two-cycle write operations with hardware-level boundary protection."      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     100000000       # Clock frequency in Hz (or 0 if not applicable)
